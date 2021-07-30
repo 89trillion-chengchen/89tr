@@ -45,9 +45,8 @@ http://89tr.chengchen.com/Operation/operation
 ├── images
 │   └── job2.jpg
 ├── report
-│   ├── __pycache__
-│   │   └── locustfile.cpython-39.pyc
 │   └── locustfile.py
+│   └── report_1627649516.562048.html
 └── webroot
     └── index.php
 ```
