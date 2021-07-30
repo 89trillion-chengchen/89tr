@@ -6,11 +6,10 @@
 5.得出结果
 ### 流程图
 
-![Image text]()
+![Image text](https://raw.githubusercontent.com/89trillion-chengchen/job2/master/images/job2.jpg)
 
 
-# 2.存储设计
-# 3.接口设计
+# 2.接口设计
 
 ## 输入算数表达式进行计算 
 ###请求方法  
@@ -19,20 +18,60 @@ HTTP POST
 ```
 ### 接口地址   
 ```php 
-http://localhost:8000/ctrl/operation.php  
+http://89tr.chengchen.com/Operation/operation
 ```
 ### 响应
 ```php 
-1+5*3+2=18
+{"status":200,
+"msg":"ok",
+"data":"1+2+3*3=12"}
 ```
-# 逻辑分层
+# 3.目录结构
+
 ```php 
-代码分为 ctrl层、report层、service层  
-ctrl层为入口
-report层为压力测试
-service层为具体逻辑实现
+.
+├── README.md
+├── classes
+│   ├── ctrl
+│   │   ├── CtrlBase.php
+│   │   └── OperationCtrl.php
+│   ├── entity
+│   ├── service
+│   │   ├── AnswerService.php
+│   │   ├── BaseService.php
+│   │   └── OperationService.php
+│   ├── unitTest
+│   │   ├── OperationServiceTest.php
+├── images
+│   └── job2.jpg
+├── report
+│   ├── __pycache__
+│   │   └── locustfile.cpython-39.pyc
+│   └── locustfile.py
+└── webroot
+    └── index.php
 ```
-# 4.运行
- ```php
-部署apache端口为8000运行即可  
- ```
+## 3.1 逻辑分层
+  ```php
+    json文件夹是json文件
+
+    classes/ctrl是请求控制层
+
+    classes/service是业务控制层
+
+    classes/unitTest是测试层
+
+    webroot/index.php是入口
+  ```
+## 4.运行和测试
+### 4.1 如何部署运行服务
+  ```php
+使用docker运行容器，容器包含 nginx、php、php-fpm
+
+配置文件根目录为项目根目录webroot，运行端口为8000
+  ```
+### 4.2 如何测试接口
+  ```php
+  终端进入 report 目录
+  运行 locust 
+  ```
