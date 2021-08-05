@@ -34,9 +34,7 @@ class OperationCtrl extends CtrlBase
         }
         //执行函数
         $result = $operationService->getOperationResult($operation);
-
         return new JsonView($result);
-
     }
 
 }

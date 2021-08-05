@@ -52,7 +52,6 @@ class OperationService extends BaseService
             }
         } catch (Exception $e) {
             $message = $e->getMessage();
-            echo json_encode($message);
         }
     }
 
