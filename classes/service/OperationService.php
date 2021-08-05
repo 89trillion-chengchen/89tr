@@ -23,35 +23,31 @@ class OperationService extends BaseService
 
     public function getOperationResult($operation)
     {
-        try {
-            if (preg_match("/[\+\-\*\/\.]{2}|[^\+\-\*\/\(\)\d\.]+/i", $operation, $matches) || !is_numeric(substr($operation, 0, 1)) || !is_numeric(substr($operation, -1))) {
-                //echo '非法算式';
-                return
-                    parent::show(
-                        400,
-                        'error',
-                        $operation
-                    );
-            } else {
-                //echo '合法算式';
-                $arr_exp = array();
-                //将字符串保存进数组
-                for ($i = 0; $i < strlen($operation); $i++) {
-                    $arr_exp[] = $operation[$i];
-                }
-                //反转数组
-                $tmp = array_reverse($arr_exp);
-                //得出结果
-                $result = $this->calcexp($tmp);
-                //echo $operation . '=' . $result;
-                return parent::show(
-                    200,
-                    'ok',
-                    $operation . '=' . $result
+        if (preg_match("/[\+\-\*\/\.]{2}|[^\+\-\*\/\(\)\d\.]+/i", $operation, $matches) || !is_numeric(substr($operation, 0, 1)) || !is_numeric(substr($operation, -1))) {
+            //echo '非法算式';
+            return
+                parent::show(
+                    400,
+                    'error',
+                    $operation
                 );
+        } else {
+            //echo '合法算式';
+            $arr_exp = array();
+            //将字符串保存进数组
+            for ($i = 0; $i < strlen($operation); $i++) {
+                $arr_exp[] = $operation[$i];
             }
-        } catch (Exception $e) {
-            $message = $e->getMessage();
+            //反转数组
+            $tmp = array_reverse($arr_exp);
+            //得出结果
+            $result = $this->calcexp($tmp);
+            //echo $operation . '=' . $result;
+            return parent::show(
+                200,
+                'ok',
+                $operation . '=' . $result
+            );
         }
     }
 
