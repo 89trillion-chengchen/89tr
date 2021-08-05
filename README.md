@@ -22,9 +22,11 @@ http://89tr.chengchen.com/Operation/operation
 ```
 ### 响应
 ```php 
-{"status":200,
-"msg":"ok",
-"data":"1+2+3*3=12"}
+{
+    "status": 200,
+    "msg": "ok",
+    "data": "1+4*9/2=19"
+}
 ```
 # 3.目录结构
 
