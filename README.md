@@ -1,8 +1,8 @@
 # 1.整体思路
 1.post获取算式  
 2.校验post请求是否为空  
-3.校验算式是否合法
-4.按照加减乘除运算优先级进行算式的进栈出栈操作
+3.校验算式是否合法  
+4.按照加减乘除运算优先级进行算式的进栈出栈操作  
 5.得出结果
 ### 流程图
 
@@ -54,8 +54,6 @@ http://89tr.chengchen.com/Operation/operation
 ```
 ## 3.1 逻辑分层
   ```php
-    json文件夹是json文件
-
     classes/ctrl是请求控制层
 
     classes/service是业务控制层

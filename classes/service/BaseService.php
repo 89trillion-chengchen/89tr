@@ -2,9 +2,6 @@
 
 namespace service;
 
-use entity\soldier;
-
-include '/entity/soldier.php';
 
 class BaseService
 {
@@ -16,9 +13,6 @@ class BaseService
         $this->dataDao = util\Singleton::get($className);
         return $this->dataDao;
     }
-
-
-
 
 
     function show($status,$msg='',$data=[]) {

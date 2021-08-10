@@ -23,12 +23,13 @@ class OperationService extends BaseService
 
     public function getOperationResult($operation)
     {
+        //去除空格
+        $operation=str_replace(' ','',$operation);
         if (preg_match("/[\+\-\*\/\.]{2}|[^\+\-\*\/\(\)\d\.]+/i", $operation, $matches) || !is_numeric(substr($operation, 0, 1)) || !is_numeric(substr($operation, -1))) {
             //echo '非法算式';
-            return
-                parent::show(
+            return parent::show(
                     400,
-                    'error',
+                    '非法算式',
                     $operation
                 );
         } else {
@@ -42,7 +43,13 @@ class OperationService extends BaseService
             $tmp = array_reverse($arr_exp);
             //得出结果
             $result = $this->calcexp($tmp);
-            //echo $operation . '=' . $result;
+            if($result=='非法算式'){
+                return parent::show(
+                    400,
+                    '非法算式，除数不能为零',
+                    $operation
+                );
+            }
             return parent::show(
                 200,
                 'ok',
@@ -57,13 +64,23 @@ class OperationService extends BaseService
         $arr_n = array();
         $arr_op = array();
         while (($s = array_pop($exp)) != '') {
-            if ($s == '*' || $s == '/') {
+            if ($s == '*') {
                 $n2 = array_pop($exp);
                 $op = $s;
                 $n1 = array_pop($arr_n);
                 $result = $this->operation($n1, $op, $n2);
                 array_push($arr_n, $result);
-            } else if ($s == '+' || $s == '-') {
+            } else if( $s == '/'){
+                $n2 = array_pop($exp);
+                $op = $s;
+                $n1 = array_pop($arr_n);
+                if(empty($n2)){
+                    return '非法算式';
+                }
+                $result = $this->operation($n1, $op, $n2);
+                array_push($arr_n, $result);
+            }
+            else if ($s == '+' || $s == '-') {
 
                 array_push($arr_op, $s);
 
