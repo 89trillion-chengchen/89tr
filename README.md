@@ -8,7 +8,6 @@
 
 ![Image text](https://raw.githubusercontent.com/89trillion-chengchen/job2/master/images/job2.jpg)
 
-
 # 2.接口设计
 
 ## 输入算数表达式进行计算 
@@ -19,6 +18,12 @@ HTTP POST
 ### 接口地址   
 ```php 
 http://89tr.chengchen.com/Operation/operation
+```
+### 请求参数
+```php 
+{
+       "operation":"1+4*6/3"
+}
 ```
 ### 响应
 ```php 
